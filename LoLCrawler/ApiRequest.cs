@@ -35,21 +35,21 @@ namespace LoLCrawler
             }
         }
 
-        public Summoner getSummonerByName(string name)
+        public Summoner GetSummonerByName(string name)
         {
             Summoner result = null;
             string json = null;
             try
             {
                 json = requester.Fetch(RequestStringHolder.SummonerRequest(name));
-                result = RiotDtoFromJson.getSummoner(json);
+                result = RiotDtoFromJson.GetSummoner(json);
             }
             catch
             {
                 if(json == EXCEEDED_LIMIT)
                 {
                     onRateLimitExceeded();
-                    return getSummonerByName(name);
+                    return GetSummonerByName(name);
                 }
                 else
                 {
@@ -77,6 +77,32 @@ namespace LoLCrawler
                 {
                     onRateLimitExceeded();
                     return GetMatchListBySummonerId(id);
+                }
+                else
+                {
+                    onOther();
+                    return null;
+                }
+            }
+            return result;
+        }
+
+        public MatchDetailed GetMatchDetailedById(string id)
+        {
+            MatchDetailed result = null;
+            string json = null;
+
+            try
+            {
+                json = requester.Fetch(RequestStringHolder.MatchDetailedRequest(id));
+                result = RiotDtoFromJson.GetMatchDetailed(json);
+            }
+            catch
+            {
+                if (json == EXCEEDED_LIMIT)
+                {
+                    onRateLimitExceeded();
+                    return GetMatchDetailedById(id);
                 }
                 else
                 {

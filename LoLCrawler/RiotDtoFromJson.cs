@@ -12,5 +12,9 @@ namespace LoLCrawler
         {
             return JsonConvert.DeserializeObject<Summoner>(json);
         }
+        public static MatchList GetMatchList(string json)
+        {
+            return JsonConvert.DeserializeObject<MatchList>(json);
+        }
     }
 }

@@ -17,9 +17,9 @@ namespace LoLCrawler
         {
             return $"{euRoot}{summonerRequest}{name}?{apiKeySuffix}";
         }
-        public static string MatchListRequest(string summonerId)
+        public static string MatchListRequest(string summonerAccountId)
         {
-            return $"{euRoot}{matchListFromSummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{euRoot}{matchListFromSummonerId}{summonerAccountId}?{apiKeySuffix}";
         }
         public static string _MatchDetailedRequest(string matchId)
         {

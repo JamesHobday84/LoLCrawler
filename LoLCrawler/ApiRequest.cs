@@ -18,6 +18,7 @@ namespace LoLCrawler
         {
             Console.WriteLine("Rate Limit Exceeded : WAITING 60 SECONDS");
             _consecutiveFailures++;
+            System.Threading.Thread.Sleep(60000);
         }
         private void onRequestSuccess()
         {
@@ -57,6 +58,32 @@ namespace LoLCrawler
                 }
             }
             
+            return result;
+        }
+
+        public MatchList GetMatchListBySummonerId(string id)
+        {
+            MatchList result = null;
+            string json = null;
+
+            try
+            {
+                json = requester.Fetch(RequestStringHolder.MatchListRequest(id));
+                result = RiotDtoFromJson.GetMatchList(json);
+            }
+            catch
+            {
+                if (json == EXCEEDED_LIMIT)
+                {
+                    onRateLimitExceeded();
+                    return GetMatchListBySummonerId(id);
+                }
+                else
+                {
+                    onOther();
+                    return null;
+                }
+            }
             return result;
         }
         

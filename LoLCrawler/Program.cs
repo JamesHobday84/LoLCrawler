@@ -9,6 +9,8 @@ namespace LoLCrawler
         {
             Summoner test = new ApiRequest().getSummonerByName("unkownEntity");
             Console.WriteLine(test.name);
+            MatchList matchList = new ApiRequest().GetMatchListBySummonerId(test.accountId);
+            Console.WriteLine(matchList.matches.Count);
             Console.ReadLine();
         }
     }

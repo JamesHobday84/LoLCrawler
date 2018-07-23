@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RiotData.LoLCrawler;
+using System;
 
 namespace LoLCrawler
 {
@@ -6,7 +7,9 @@ namespace LoLCrawler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Summoner test = new ApiRequest().getSummonerByName("unkownEntity");
+            Console.WriteLine(test.name);
+            Console.ReadLine();
         }
     }
 }

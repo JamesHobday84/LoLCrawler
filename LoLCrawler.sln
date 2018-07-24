@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoLCrawler", "LoLCrawler\LoLCrawler.csproj", "{27A8ABF6-91B0-49D6-9138-803FF15F5E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoLCrawler", "LoLCrawler\LoLCrawler.csproj", "{27A8ABF6-91B0-49D6-9138-803FF15F5E16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

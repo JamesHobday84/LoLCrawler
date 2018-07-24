@@ -67,5 +67,12 @@ namespace LoLCrawler
             }
             return false;
         }
+        public List<LeagueDiv> GetAllLeagueDivs()
+        {
+            using (var context = new NamesDbContext())
+            {
+                return context.LeagueDivs.ToList();
+            }
+        }
     }
 }

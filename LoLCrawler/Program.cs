@@ -9,6 +9,8 @@ namespace LoLCrawler
     {
         static void Main(string[] args)
         {
+            DbDataStatsGather statsGatherer = new DbDataStatsGather();
+            statsGatherer.getLeagueDivStats();
             Crawler crawler = new Crawler();
             crawler.CollectLeagueDivsFromDbNames();
             Console.ReadLine();

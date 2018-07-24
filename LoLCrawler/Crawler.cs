@@ -1,4 +1,6 @@
-﻿using RiotData.LoLCrawler;
+﻿using LoLCrawler.DatabaseEntity;
+using LoLCrawler.RiotData;
+using RiotData.LoLCrawler;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -63,5 +65,43 @@ namespace LoLCrawler
                 index++;
             }
         }
+
+        public void CollectLeagueDivsFromDbNames()
+        {
+            int newRecordsFound = 0;
+            int index = 1;
+            DbHelper dbHelper = new DbHelper();
+            while (dbHelper.GetNameFromId(index) != null)
+            {
+                Name name = dbHelper.GetNameFromId(index);
+                Summoner summoner = new ApiRequest().GetSummonerByName(name.summonerName);
+                if (summoner != null)
+                {
+                    LeaguePosition leaguePosition = new ApiRequest().GetSoloQLeaguePositionBySummonerId(summoner.id);
+                    LeagueDiv leagueDiv;
+                    if (leaguePosition != null)
+                    {
+                        leagueDiv = new LeagueDiv
+                        {
+                            summonerName = summoner.name,
+                            tier = leaguePosition.tier,
+                            rank = leaguePosition.rank,
+                        };
+                    }
+                    else
+                    {
+                        leagueDiv = new LeagueDiv(summoner.name);
+                    }
+
+                    if (dbHelper.submitLeagueDivIfUnique(leagueDiv))
+                    {
+                        newRecordsFound++;
+                    }
+                    Console.WriteLine($"Finished processing index {index} : Total New Records = {newRecordsFound}");
+                }
+                index++;
+            }
+        }
     }
 }
+

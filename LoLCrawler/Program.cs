@@ -9,10 +9,8 @@ namespace LoLCrawler
     {
         static void Main(string[] args)
         {
-            Summoner summoner = new ApiRequest().GetSummonerByName("unkownEntity");
-            LeaguePosition leaguePosition = new ApiRequest().GetSoloQLeaguePositionBySummonerId(summoner.id);
             Crawler crawler = new Crawler();
-            crawler.CollectNamesFromMatchHistory();
+            crawler.CollectLeagueDivsFromDbNames();
             Console.ReadLine();
         }
     }

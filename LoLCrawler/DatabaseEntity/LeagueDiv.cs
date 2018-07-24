@@ -6,6 +6,14 @@ namespace LoLCrawler.DatabaseEntity
 {
     class LeagueDiv
     {
+        public LeagueDiv() { }
+        public LeagueDiv(string name)
+        {
+            summonerName = name;
+            tier = "UNRANKED";
+            rank = "UNRANKED";
+        }
+
         public int id { get; set; }
         public string summonerName { get; set; }
         public string tier { get; set; }

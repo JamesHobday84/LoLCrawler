@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoLCrawler.DatabaseEntity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,31 @@ namespace LoLCrawler
                 Name queryResponse = context.Names.FirstOrDefault(a => a.NameId == id);
                 return queryResponse;
             }
+        }
+        public bool LeagueDivAlreadyExists(string name)
+        {
+            using (var context = new NamesDbContext())
+            {
+                LeagueDiv queryResponse = context.LeagueDivs.FirstOrDefault(a => a.summonerName == name);
+                return (queryResponse != null);
+            }
+        }
+        public void submitLeagueDiv(LeagueDiv leagueDiv)
+        {
+            using (var context = new NamesDbContext())
+            {
+                context.Add(leagueDiv);
+                context.SaveChanges();
+            }
+        }
+        public bool submitLeagueDivIfUnique(LeagueDiv leagueDiv)
+        {
+            if (!LeagueDivAlreadyExists(leagueDiv.summonerName))
+            {
+                submitLeagueDiv(leagueDiv);
+                return true;
+            }
+            return false;
         }
     }
 }

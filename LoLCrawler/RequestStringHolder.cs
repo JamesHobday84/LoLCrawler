@@ -10,8 +10,9 @@ namespace LoLCrawler
         private static string apiKey = "RGAPI-e04a4915-be08-433c-aba5-cd72fca675c4";
         private static string apiKeySuffix = $"api_key={apiKey}";
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
-        private static string matchListFromSummonerId = "lol/match/v3/matchlists/by-account/"; //+id + ?;
+        private static string matchListFromSummonerAccountId = "lol/match/v3/matchlists/by-account/"; //+id + ?;
         private static string matchDetailedFromId = "lol/match/v3/matches/"; //+id + ?
+        private static string leaguePositionFromSummonerId = "/lol/league/v3/positions/by-summoner/"; //+id + ?;
 
         public static string SummonerRequest(string name)
         {
@@ -19,11 +20,15 @@ namespace LoLCrawler
         }
         public static string MatchListRequest(string summonerAccountId)
         {
-            return $"{euRoot}{matchListFromSummonerId}{summonerAccountId}?{apiKeySuffix}";
+            return $"{euRoot}{matchListFromSummonerAccountId}{summonerAccountId}?{apiKeySuffix}";
         }
         public static string MatchDetailedRequest(string matchId)
         {
             return $"{euRoot}{matchDetailedFromId}{matchId}?{apiKeySuffix}";
+        }
+        public static string LeaguePositionRequest(string summonerId)
+        {
+            return $"{euRoot}{leaguePositionFromSummonerId}{summonerId}?{apiKeySuffix}";
         }
 
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using LoLCrawler.RiotData;
 
 namespace LoLCrawler
 {
@@ -19,6 +20,10 @@ namespace LoLCrawler
         public static MatchDetailed GetMatchDetailed(string json)
         {
             return JsonConvert.DeserializeObject<MatchDetailed>(json);
+        }
+        public static IEnumerable<LeaguePosition> GetLeaguePositionList(string json)
+        {
+            return JsonConvert.DeserializeObject<IEnumerable<LeaguePosition>>(json);
         }
     }
 }

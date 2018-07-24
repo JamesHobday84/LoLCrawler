@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LoLCrawler.RiotData;
+using Newtonsoft.Json;
 using RiotData.LoLCrawler;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace LoLCrawler
         private void onOther()
         {
             _consecutiveNullsReturned++;
-            if(_consecutiveNullsReturned > 10)
+            if (_consecutiveNullsReturned > 10)
             {
                 //something has gone wrong lets stop.
                 throw new Exception();
@@ -46,7 +47,7 @@ namespace LoLCrawler
             }
             catch
             {
-                if(json == EXCEEDED_LIMIT)
+                if (json == EXCEEDED_LIMIT)
                 {
                     onRateLimitExceeded();
                     return GetSummonerByName(name);
@@ -57,7 +58,7 @@ namespace LoLCrawler
                     return null;
                 }
             }
-            
+
             return result;
         }
 
@@ -112,6 +113,48 @@ namespace LoLCrawler
             }
             return result;
         }
-        
+        //returns null if not found or no rank data indicating they are unranked.
+        public LeaguePosition GetSoloQLeaguePositionBySummonerId(string id)
+        {
+            IEnumerable<LeaguePosition> leaguePositionList = GetLeaguePositionsBySummonerId(id);
+            if (leaguePositionList != null)
+            {
+                foreach(LeaguePosition leaguePosition in leaguePositionList)
+                {
+                    if (leaguePosition.queueType == "RANKED_SOLO_5x5")
+                    {
+                        return leaguePosition;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public IEnumerable<LeaguePosition> GetLeaguePositionsBySummonerId(string id)
+        {
+            string json = null;
+            IEnumerable<LeaguePosition> result = null;
+
+            try
+            {
+                json = requester.Fetch(RequestStringHolder.LeaguePositionRequest(id));
+                result = RiotDtoFromJson.GetLeaguePositionList(json);
+            }
+            catch
+            {
+                if (json == EXCEEDED_LIMIT)
+                {
+                    onRateLimitExceeded();
+                    return GetLeaguePositionsBySummonerId(id);
+                }
+                else
+                {
+                    onOther();
+                    return null;
+                }
+            }
+
+            return result;
+        }
     }
 }

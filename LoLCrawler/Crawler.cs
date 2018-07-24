@@ -10,7 +10,7 @@ namespace LoLCrawler
         public void CollectNamesFromMatchHistory(string summonerName)
         {
             Summoner summoner = new ApiRequest().GetSummonerByName(summonerName);
-            Console.WriteLine($"Found Summoner : summonerName");
+            Console.WriteLine($"Found Summoner : {summonerName}");
 
             Console.WriteLine("Attempting to find matchHistory...");
             MatchList matchList = new ApiRequest().GetMatchListBySummonerId(summoner.accountId);
@@ -52,7 +52,16 @@ namespace LoLCrawler
 
         public void CollectNamesFromMatchHistory()
         {
+            int index = 1;
+            DbHelper dbHelper = new DbHelper();
 
+            while(dbHelper.GetNameFromId(index) != null)
+            {
+                Name name = dbHelper.GetNameFromId(index);
+                CollectNamesFromMatchHistory(name.summonerName);
+                Console.WriteLine($"Collected all name from {name.summonerName}'s match history : DbIndex was {index}");
+                index++;
+            }
         }
     }
 }

@@ -22,14 +22,23 @@ namespace LoLCrawler
             using (var context = new NamesDbContext())
             {
                 context.Add(name);
+                context.SaveChanges();
             }
         }
         public bool NameAlreadyExists(Name name)
         {
             using (var context = new NamesDbContext())
             {
-                Name queryResponse = context.Names.FirstOrDefault(a => a.NameId == name.NameId);
-                return (queryResponse == null);
+                Name queryResponse = context.Names.FirstOrDefault(a => a.summonerName == name.summonerName);
+                return (queryResponse != null);
+            }
+        }
+        public Name GetNameFromId(int id)
+        {
+            using (var context = new NamesDbContext())
+            {
+                Name queryResponse = context.Names.FirstOrDefault(a => a.NameId == id);
+                return queryResponse;
             }
         }
     }

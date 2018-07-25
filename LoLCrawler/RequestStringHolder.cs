@@ -21,12 +21,18 @@ namespace LoLCrawler
         private static string leagueByLeagueId = "lol/league/v3/leagues/"; //+LeagueId
         private static string masterLeaguesByQueue = "lol/league/v3/masterleagues/by-queue/"; //+Queue;
         private static string leaguePositionsBySummonerId = "lol/league/v3/positions/by-summoner/"; //+summonerId
+        //LOL-STATUS-V3
+        private static string status = "lol/status/v3/shard-data/"; //region queried by euRoot (could use an NA root to query NA);
 
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
         private static string matchListFromSummonerAccountId = "lol/match/v3/matchlists/by-account/"; //+id + ?;
         private static string matchDetailedFromId = "lol/match/v3/matches/"; //+id + ?
 
-
+        //LOL-STATUS-V3
+        private static string Status()
+        {
+            return $"{euRoot}{status}?{apiKeySuffix}";
+        }
 
 
         //Champion-Mastery-V3
@@ -60,6 +66,8 @@ namespace LoLCrawler
         {
             return $"{euRoot}{leaguePositionsBySummonerId}{summonerId}?{apiKeySuffix}";
         }
+
+        //LOL-STATUS-V3
 
 
 

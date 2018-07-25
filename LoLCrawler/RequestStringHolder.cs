@@ -32,6 +32,10 @@ namespace LoLCrawler
         private static string timelinesByMatchId = "lol/match/v3/timelines/by-match/"; //+MatchId;
         private static string matchesByTournamentCode = "lol/match/v3/matches/by-tournament-code/"; //+{TournamentCode} + /ids; (/ids is stringliteral not param);
 
+        //Spectator-V3
+        private static string activeGamesBySummonerId = "lol/spectator/v3/active-games/by-summoner/"; //+SummonerId
+        private static string featuredGames = "/lol/spectator/v3/featured-games"; //No Query params to append.
+
         //other;
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
 
@@ -96,6 +100,16 @@ namespace LoLCrawler
         public static string MatchesByMatchIdByTournamentsCode(string matchId, string tournamentCode)
         {
             return $"{euRoot}{matchesByMatchId}{matchId}/by-tournament-code/{tournamentCode}?{apiKeySuffix}";
+        }
+
+        //Spectator-V3
+        public static string ActiveGamesBySummonerId(string summonerId)
+        {
+            return $"{euRoot}{activeGamesBySummonerId}{summonerId}?{apiKeySuffix}";
+        }
+        public static string FeaturedGames()
+        {
+            return $"{euRoot}{featuredGames}?{apiKeySuffix}";
         }
 
 

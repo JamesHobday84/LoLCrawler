@@ -1,130 +1,33 @@
-﻿using System;
+﻿using LoLCrawler.RequestStringHolders;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LoLCrawler
 {
-    public static class RequestStringHolder
+    public class RequestStringHolder
     {
-        
-        //Shared strings for all api calls.
-        private static string root = "https://euw1.api.riotgames.com/";
-        private static string apiKey = "RGAPI-53e7278a-2924-4abb-8678-25ee3c7d6260";
-        private static string apiKeySuffix = $"api_key={apiKey}";
 
-        //Champion-Mastery-V3
-        private static string championMasteriesBySummonerId = "lol/champion-mastery/v3/champion-masteries/by-summoner/"; //+SummonerID;
-        //variation of the above also exists including additional /by-champion/{championId}.
-        private static string championMasteryScoreBySummonerId = "lol/champion-mastery/v3/scores/by-summoner/"; //+SummonerID;
-
-        //League-V3
-        private static string challengerLeaguesByQueue = "lol/league/v3/challengerleagues/by-queue/"; //+Queue;
-        private static string leagueByLeagueId = "lol/league/v3/leagues/"; //+LeagueId
-        private static string masterLeaguesByQueue = "lol/league/v3/masterleagues/by-queue/"; //+Queue;
-        private static string leaguePositionsBySummonerId = "lol/league/v3/positions/by-summoner/"; //+summonerId;
-        
-        //LOL-STATUS-V3
-        private static string status = "lol/status/v3/shard-data/"; //region queried specified by euRoot (could use an NA root to query NA);
-
-        //Match-V3
-        private static string matchesByMatchId = "lol/match/v3/matches/"; //+MatchId;
-        //There is an additional optional params resulting in the following : lol/match/v3/matches/{matchId}/by-tournament-code/{tournamentCode};
-        private static string matchListByAccountId = "lol/match/v3/matchlists/by-account/"; //+AccountId;
-        private static string timelinesByMatchId = "lol/match/v3/timelines/by-match/"; //+MatchId;
-        private static string matchesByTournamentCode = "lol/match/v3/matches/by-tournament-code/"; //+{TournamentCode} + /ids; (/ids is stringliteral not param);
-
-        //Spectator-V3
-        private static string activeGamesBySummonerId = "lol/spectator/v3/active-games/by-summoner/"; //+SummonerId
-        private static string featuredGames = "/lol/spectator/v3/featured-games"; //No Query params to append.
-
-        //Summoner-V3
-        private static string summonersByAccountId = "lol/summoner/v3/summoners/by-account/"; //+AccountId
-        private static string summonersByName = "lol/summoner/v3/summoners/by-name/"; //+SummonerName
-        private static string summonersBySummonerId = "lol/summoner/v3/summoners/"; //+SummonerId        
+        public RequestStringHolder()
+        {
+            EuWestStringHolder = new EuWestStringHolder();
+            ChampionMastery = new ChampionMasteryV3StringHolder(EuWestStringHolder);
+            //add champion api object here once added to project.
+            League = new LeagueV3StringHolder(EuWestStringHolder);
+            LolStatus = new LolStatusV3StringHolder(EuWestStringHolder);
+            Match = new MatchV3(EuWestStringHolder);
+            Spectator = new SpectatorV3StringHolder(EuWestStringHolder);
+            Summoner = new SummonerV3StringHolder(EuWestStringHolder);            
+        }
 
 
-        //Champion-Mastery-V3
-        public static string ChampionMasteriesBySummonerId(string summonerId)
-        {
-            return $"{root}{championMasteriesBySummonerId}{summonerId}?{apiKeySuffix}";
-        }
-        public static string ChampionMasteriesBySummonerByChampion(string summonerId, string championId)
-        {
-            return $"{root}{championMasteriesBySummonerId}{summonerId}/by-champion{championId}?{apiKeySuffix}";
-        }
-        public static string ChampionMasteryScoreBySummonerId(string summonerId)
-        {
-            return $"{root}{championMasteryScoreBySummonerId}{summonerId}?{apiKeySuffix}";
-        }
-
-        //League-V3
-        public static string ChallengerLegauesByQueue(string queue)
-        {
-            return $"{root}{challengerLeaguesByQueue}{queue}?{apiKeySuffix}";
-        }
-        public static string LeagueByLeagueId(string leagueId)
-        {
-            return $"{root}{leagueByLeagueId}{leagueId}?{apiKeySuffix}";
-        }
-        public static string MasterLeaguesByQueue(string queue)
-        {
-            return $"{root}{masterLeaguesByQueue}{queue}?{apiKeySuffix}";
-        }
-        public static string LeaguePositionsBySummonerId(string summonerId)
-        {
-            return $"{root}{leaguePositionsBySummonerId}{summonerId}?{apiKeySuffix}";
-        }
-
-        //LOL-STATUS-V3
-        public static string Status()
-        {
-            return $"{root}{status}?{apiKeySuffix}";
-        }
-
-        //Match-V3
-        public static string MatchesByMatchId(string matchId)
-        {
-            return $"{root}{matchesByMatchId}{matchId}?{apiKeySuffix}";
-        }
-        public static string MatchListByAccountId(string accountId)
-        {
-            return $"{root}{matchListByAccountId}{accountId}?{apiKeySuffix}";
-        }
-        public static string TimelinesByMatchId(string matchId)
-        {
-            return $"{root}{timelinesByMatchId}{matchId}?{apiKeySuffix}";
-        }
-        public static string MatchesByTournamentCode(string tournamentCode)
-        {
-            return $"{root}{matchesByTournamentCode}{tournamentCode}/ids?{apiKeySuffix}";
-        }
-        public static string MatchesByMatchIdByTournamentsCode(string matchId, string tournamentCode)
-        {
-            return $"{root}{matchesByMatchId}{matchId}/by-tournament-code/{tournamentCode}?{apiKeySuffix}";
-        }
-
-        //Spectator-V3
-        public static string ActiveGamesBySummonerId(string summonerId)
-        {
-            return $"{root}{activeGamesBySummonerId}{summonerId}?{apiKeySuffix}";
-        }
-        public static string FeaturedGames()
-        {
-            return $"{root}{featuredGames}?{apiKeySuffix}";
-        }
-
-        //Summoner-V3
-        public static string SummonersByAccountId(string accountId)
-        {
-            return $"{root}{summonersByAccountId}{accountId}?{apiKeySuffix}";
-        }
-        public static string SummonersByName(string summonerName)
-        {
-            return $"{root}{summonersByName}{summonerName}?{apiKeySuffix}";
-        }
-        public static string SummonerBySummonerId(string summonerId)
-        {
-            return $"{root}{summonersBySummonerId}{summonerId}?{apiKeySuffix}";
-        }
+        public EuWestStringHolder EuWestStringHolder;
+        public ChampionMasteryV3StringHolder ChampionMastery;
+        //forgot to add championApi object, do this and put it here.
+        public LeagueV3StringHolder League;
+        public LolStatusV3StringHolder LolStatus;
+        public MatchV3 Match;
+        public SpectatorV3StringHolder Spectator;
+        public SummonerV3StringHolder Summoner;
     }
 }

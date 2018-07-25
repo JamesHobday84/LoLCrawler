@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.RequestStringHolders
 {
-    class SpectatorV3StringHolder
+    public class SpectatorV3StringHolder
     {
         public SpectatorV3StringHolder(SharedStringHolder sharedStringHolder)
         {

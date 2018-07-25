@@ -9,9 +9,15 @@ namespace LoLCrawler
 {
     class ApiRequest
     {
+        public ApiRequest(RequestStringHolder rsh)
+        {
+            requestStringHolder = rsh;
+        }
+
         private int _consecutiveFailures = 0;
         private int _consecutiveNullsReturned = 0;
         private const string EXCEEDED_LIMIT = "Response status code does not indicate success: 429 (Too Many Requests).";
+        private RequestStringHolder requestStringHolder;
 
         private RequestMaker requester = new RequestMaker();
 
@@ -42,7 +48,7 @@ namespace LoLCrawler
             string json = null;
             try
             {
-                json = requester.Fetch(RequestStringHolder.SummonersByName(name));
+                json = requester.Fetch(requestStringHolder.Summoner.SummonersByName(name));
                 result = RiotDtoFromJson.GetSummoner(json);
             }
             catch
@@ -69,7 +75,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.MatchListByAccountId(id));
+                json = requester.Fetch(requestStringHolder.Match.MatchListByAccountId(id));
                 result = RiotDtoFromJson.GetMatchList(json);
             }
             catch
@@ -95,7 +101,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.MatchesByMatchId(id));
+                json = requester.Fetch(requestStringHolder.Match.MatchesByMatchId(id));
                 result = RiotDtoFromJson.GetMatchDetailed(json);
             }
             catch
@@ -137,7 +143,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.LeaguePositionsBySummonerId(id));
+                json = requester.Fetch(requestStringHolder.League.LeaguePositionsBySummonerId(id));
                 result = RiotDtoFromJson.GetLeaguePositionList(json);
             }
             catch

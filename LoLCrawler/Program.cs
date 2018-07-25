@@ -12,7 +12,7 @@ namespace LoLCrawler
             DbDataStatsGather statsGatherer = new DbDataStatsGather();
             statsGatherer.getLeagueDivStats();
             Crawler crawler = new Crawler();
-            crawler.CollectLeagueDivsFromDbNames();
+            crawler.CollectNamesFromMatchHistory(1);
             Console.ReadLine();
         }
     }

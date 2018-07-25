@@ -7,7 +7,7 @@ namespace LoLCrawler
     public static class RequestStringHolder
     {
         private static string euRoot = "https://euw1.api.riotgames.com/";
-        private static string apiKey = "RGAPI-e04a4915-be08-433c-aba5-cd72fca675c4";
+        private static string apiKey = "RGAPI-53e7278a-2924-4abb-8678-25ee3c7d6260";
         private static string apiKeySuffix = $"api_key={apiKey}";
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
         private static string matchListFromSummonerAccountId = "lol/match/v3/matchlists/by-account/"; //+id + ?;

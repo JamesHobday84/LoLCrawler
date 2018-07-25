@@ -52,9 +52,8 @@ namespace LoLCrawler
             Console.WriteLine($"Submitted {uniqureRecordsFound} new, previously unknown, names");
         }
 
-        public void CollectNamesFromMatchHistory()
+        public void CollectNamesFromMatchHistory(int index)
         {
-            int index = 1;
             DbHelper dbHelper = new DbHelper();
 
             while(dbHelper.GetNameFromId(index) != null)

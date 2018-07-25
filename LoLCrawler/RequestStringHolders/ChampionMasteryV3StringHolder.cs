@@ -12,11 +12,18 @@ namespace LoLCrawler.RequestStringHolders
             apiKeySuffix = sharedStringHolder.ApiKeySuffix();
         }
 
+        //Shared request strings.
+
+        private string root;
+        private string apiKeySuffix;
+
+        //Api specific request strings.
+
         private readonly string championMasteriesBySummonerId = "lol/champion-mastery/v3/champion-masteries/by-summoner/"; //+SummonerID;
         //variation of the above also exists including additional /by-champion/{championId}.
         private readonly string championMasteryScoreBySummonerId = "lol/champion-mastery/v3/scores/by-summoner/"; //+SummonerID;
-        private string root;
-        private string apiKeySuffix;
+        
+        //Assemble request strings...
 
         public string ChampionMasteriesBySummonerId(string summonerId)
         {

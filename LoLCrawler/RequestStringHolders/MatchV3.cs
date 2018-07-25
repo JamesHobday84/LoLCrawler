@@ -19,11 +19,11 @@ namespace LoLCrawler.RequestStringHolders
 
         //Api specific request strings.
 
-        private string matchesByMatchId = "lol/match/v3/matches/"; //+MatchId;
+        private readonly string matchesByMatchId = "lol/match/v3/matches/"; //+MatchId;
         //There is an additional optional params resulting in the following : lol/match/v3/matches/{matchId}/by-tournament-code/{tournamentCode};
-        private string matchListByAccountId = "lol/match/v3/matchlists/by-account/"; //+AccountId;
-        private string timelinesByMatchId = "lol/match/v3/timelines/by-match/"; //+MatchId;
-        private string matchesByTournamentCode = "lol/match/v3/matches/by-tournament-code/"; //+{TournamentCode} + /ids; (/ids is stringliteral not param);
+        private readonly string matchListByAccountId = "lol/match/v3/matchlists/by-account/"; //+AccountId;
+        private readonly string timelinesByMatchId = "lol/match/v3/timelines/by-match/"; //+MatchId;
+        private readonly string matchesByTournamentCode = "lol/match/v3/matches/by-tournament-code/"; //+{TournamentCode} + /ids; (/ids is stringliteral not param);
 
         //Build request strings...
 

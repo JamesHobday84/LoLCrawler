@@ -69,7 +69,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.MatchListRequest(id));
+                json = requester.Fetch(RequestStringHolder.MatchListByAccountId(id));
                 result = RiotDtoFromJson.GetMatchList(json);
             }
             catch
@@ -95,7 +95,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.MatchDetailedRequest(id));
+                json = requester.Fetch(RequestStringHolder.MatchesByMatchId(id));
                 result = RiotDtoFromJson.GetMatchDetailed(json);
             }
             catch

@@ -20,19 +20,22 @@ namespace LoLCrawler
         private static string challengerLeaguesByQueue = "lol/league/v3/challengerleagues/by-queue/"; //+Queue;
         private static string leagueByLeagueId = "lol/league/v3/leagues/"; //+LeagueId
         private static string masterLeaguesByQueue = "lol/league/v3/masterleagues/by-queue/"; //+Queue;
-        private static string leaguePositionsBySummonerId = "lol/league/v3/positions/by-summoner/"; //+summonerId
+        private static string leaguePositionsBySummonerId = "lol/league/v3/positions/by-summoner/"; //+summonerId;
+        
         //LOL-STATUS-V3
-        private static string status = "lol/status/v3/shard-data/"; //region queried by euRoot (could use an NA root to query NA);
+        private static string status = "lol/status/v3/shard-data/"; //region queried specified by euRoot (could use an NA root to query NA);
 
+        //Match-V3
+        private static string matchesByMatchId = "lol/match/v3/matches/"; //+MatchId;
+        //There is an addition optional params resulting in the following : lol/match/v3/matches/{matchId}/by-tournament-code/{tournamentCode};
+        private static string matchListByAccountId = "lol/match/v3/matchlists/by-account/"; //+AccountId;
+        private static string timelinesByMatchId = "lol/match/v3/timelines/by-match/"; //+MatchId;
+        private static string matchesByTournamentCode = "lol/match/v3/matches/by-tournament-code/"; //+{TournamentCode} + /ids; (/ids is stringliteral not param);
+
+        //other;
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
-        private static string matchListFromSummonerAccountId = "lol/match/v3/matchlists/by-account/"; //+id + ?;
-        private static string matchDetailedFromId = "lol/match/v3/matches/"; //+id + ?
 
-        //LOL-STATUS-V3
-        private static string Status()
-        {
-            return $"{euRoot}{status}?{apiKeySuffix}";
-        }
+        
 
 
         //Champion-Mastery-V3
@@ -68,7 +71,32 @@ namespace LoLCrawler
         }
 
         //LOL-STATUS-V3
+        public static string Status()
+        {
+            return $"{euRoot}{status}?{apiKeySuffix}";
+        }
 
+        //Match-V3
+        public static string MatchesByMatchId(string matchId)
+        {
+            return $"{euRoot}{matchesByMatchId}{matchId}?{apiKeySuffix}";
+        }
+        public static string MatchListByAccountId(string accountId)
+        {
+            return $"{euRoot}{matchListByAccountId}{accountId}?{apiKeySuffix}";
+        }
+        public static string TimelinesByMatchId(string matchId)
+        {
+            return $"{euRoot}{timelinesByMatchId}{matchId}?{apiKeySuffix}";
+        }
+        public static string MatchesByTournamentCode(string tournamentCode)
+        {
+            return $"{euRoot}{matchesByTournamentCode}{tournamentCode}/ids?{apiKeySuffix}";
+        }
+        public static string MatchesByMatchIdByTournamentsCode(string matchId, string tournamentCode)
+        {
+            return $"{euRoot}{matchesByMatchId}{matchId}/by-tournament-code/{tournamentCode}?{apiKeySuffix}";
+        }
 
 
 
@@ -76,14 +104,6 @@ namespace LoLCrawler
         public static string SummonerRequest(string name)
         {
             return $"{euRoot}{summonerRequest}{name}?{apiKeySuffix}";
-        }
-        public static string MatchListRequest(string summonerAccountId)
-        {
-            return $"{euRoot}{matchListFromSummonerAccountId}{summonerAccountId}?{apiKeySuffix}";
-        }
-        public static string MatchDetailedRequest(string matchId)
-        {
-            return $"{euRoot}{matchDetailedFromId}{matchId}?{apiKeySuffix}";
         }
         
 

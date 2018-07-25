@@ -12,7 +12,7 @@ namespace LoLCrawler
         {
             EuWestStringHolder = new EuWestStringHolder();
             ChampionMastery = new ChampionMasteryV3StringHolder(EuWestStringHolder);
-            //add champion api object here once added to project.
+            Champion = new ChampionV3StringHolder(EuWestStringHolder);
             League = new LeagueV3StringHolder(EuWestStringHolder);
             LolStatus = new LolStatusV3StringHolder(EuWestStringHolder);
             Match = new MatchV3(EuWestStringHolder);
@@ -23,7 +23,7 @@ namespace LoLCrawler
 
         public EuWestStringHolder EuWestStringHolder;
         public ChampionMasteryV3StringHolder ChampionMastery;
-        //forgot to add championApi object, do this and put it here.
+        public ChampionV3StringHolder Champion;
         public LeagueV3StringHolder League;
         public LolStatusV3StringHolder LolStatus;
         public MatchV3 Match;

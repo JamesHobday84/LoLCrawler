@@ -7,7 +7,7 @@ namespace LoLCrawler
     public static class RequestStringHolder
     {
         //Shared strings for all api calls.
-        private static string euRoot = "https://euw1.api.riotgames.com/";
+        private static string root = "https://euw1.api.riotgames.com/";
         private static string apiKey = "RGAPI-53e7278a-2924-4abb-8678-25ee3c7d6260";
         private static string apiKeySuffix = $"api_key={apiKey}";
 
@@ -45,85 +45,85 @@ namespace LoLCrawler
         //Champion-Mastery-V3
         public static string ChampionMasteriesBySummonerId(string summonerId)
         {
-            return $"{euRoot}{championMasteriesBySummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{root}{championMasteriesBySummonerId}{summonerId}?{apiKeySuffix}";
         }
         public static string ChampionMasteriesBySummonerByChampion(string summonerId, string championId)
         {
-            return $"{euRoot}{championMasteriesBySummonerId}{summonerId}/by-champion{championId}?{apiKeySuffix}";
+            return $"{root}{championMasteriesBySummonerId}{summonerId}/by-champion{championId}?{apiKeySuffix}";
         }
         public static string ChampionMasteryScoreBySummonerId(string summonerId)
         {
-            return $"{euRoot}{championMasteryScoreBySummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{root}{championMasteryScoreBySummonerId}{summonerId}?{apiKeySuffix}";
         }
 
         //League-V3
         public static string ChallengerLegauesByQueue(string queue)
         {
-            return $"{euRoot}{challengerLeaguesByQueue}{queue}?{apiKeySuffix}";
+            return $"{root}{challengerLeaguesByQueue}{queue}?{apiKeySuffix}";
         }
         public static string LeagueByLeagueId(string leagueId)
         {
-            return $"{euRoot}{leagueByLeagueId}{leagueId}?{apiKeySuffix}";
+            return $"{root}{leagueByLeagueId}{leagueId}?{apiKeySuffix}";
         }
         public static string MasterLeaguesByQueue(string queue)
         {
-            return $"{euRoot}{masterLeaguesByQueue}{queue}?{apiKeySuffix}";
+            return $"{root}{masterLeaguesByQueue}{queue}?{apiKeySuffix}";
         }
         public static string LeaguePositionsBySummonerId(string summonerId)
         {
-            return $"{euRoot}{leaguePositionsBySummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{root}{leaguePositionsBySummonerId}{summonerId}?{apiKeySuffix}";
         }
 
         //LOL-STATUS-V3
         public static string Status()
         {
-            return $"{euRoot}{status}?{apiKeySuffix}";
+            return $"{root}{status}?{apiKeySuffix}";
         }
 
         //Match-V3
         public static string MatchesByMatchId(string matchId)
         {
-            return $"{euRoot}{matchesByMatchId}{matchId}?{apiKeySuffix}";
+            return $"{root}{matchesByMatchId}{matchId}?{apiKeySuffix}";
         }
         public static string MatchListByAccountId(string accountId)
         {
-            return $"{euRoot}{matchListByAccountId}{accountId}?{apiKeySuffix}";
+            return $"{root}{matchListByAccountId}{accountId}?{apiKeySuffix}";
         }
         public static string TimelinesByMatchId(string matchId)
         {
-            return $"{euRoot}{timelinesByMatchId}{matchId}?{apiKeySuffix}";
+            return $"{root}{timelinesByMatchId}{matchId}?{apiKeySuffix}";
         }
         public static string MatchesByTournamentCode(string tournamentCode)
         {
-            return $"{euRoot}{matchesByTournamentCode}{tournamentCode}/ids?{apiKeySuffix}";
+            return $"{root}{matchesByTournamentCode}{tournamentCode}/ids?{apiKeySuffix}";
         }
         public static string MatchesByMatchIdByTournamentsCode(string matchId, string tournamentCode)
         {
-            return $"{euRoot}{matchesByMatchId}{matchId}/by-tournament-code/{tournamentCode}?{apiKeySuffix}";
+            return $"{root}{matchesByMatchId}{matchId}/by-tournament-code/{tournamentCode}?{apiKeySuffix}";
         }
 
         //Spectator-V3
         public static string ActiveGamesBySummonerId(string summonerId)
         {
-            return $"{euRoot}{activeGamesBySummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{root}{activeGamesBySummonerId}{summonerId}?{apiKeySuffix}";
         }
         public static string FeaturedGames()
         {
-            return $"{euRoot}{featuredGames}?{apiKeySuffix}";
+            return $"{root}{featuredGames}?{apiKeySuffix}";
         }
 
         //Summoner-V3
         public static string SummonersByAccountId(string accountId)
         {
-            return $"{euRoot}{summonersByAccountId}{accountId}?{apiKeySuffix}";
+            return $"{root}{summonersByAccountId}{accountId}?{apiKeySuffix}";
         }
         public static string SummonersByName(string summonerName)
         {
-            return $"{euRoot}{summonersByName}{summonerName}?{apiKeySuffix}";
+            return $"{root}{summonersByName}{summonerName}?{apiKeySuffix}";
         }
         public static string SummonerBySummonerId(string summonerId)
         {
-            return $"{euRoot}{summonersBySummonerId}{summonerId}?{apiKeySuffix}";
+            return $"{root}{summonersBySummonerId}{summonerId}?{apiKeySuffix}";
         }
     }
 }

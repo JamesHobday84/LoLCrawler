@@ -4,20 +4,19 @@ using System.Text;
 
 namespace LoLCrawler.RequestStringHolders
 {
-    static class EuWestStringHolder
+    class EuWestStringHolder : SharedStringHolder
     {
-        private static string euRoot = "https://euw1.api.riotgames.com/";
-        private static string apiKey = "RGAPI-53e7278a-2924-4abb-8678-25ee3c7d6260";
-        private static string apiKeySuffix = $"api_key={apiKey}";
+        private readonly string root = "https://euw1.api.riotgames.com/";
+        private readonly string apiKey = "RGAPI-53e7278a-2924-4abb-8678-25ee3c7d6260";
 
-        public static string EuRoot()
+        public string Root()
         {
-            return euRoot;
+            return root;
         }
 
-        public static string ApiKeySuffix()
+        public string ApiKeySuffix()
         {
-            return apiKeySuffix;
+            return $"api_key={apiKey}";
         }
     }
 }

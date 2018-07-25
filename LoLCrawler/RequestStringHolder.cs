@@ -13,15 +13,20 @@ namespace LoLCrawler
 
         //Champion-Mastery-V3
         private static string championMasteriesBySummonerId = "lol/champion-mastery/v3/champion-masteries/by-summoner/"; //+SummonerID;
-        //There is also another variation of the above string to get by champion id for a given summoner.
-        //lol/champion-mastery/v3/champion-masteries/by-summoner/{summonerId}/by-champion/{championId}.
-        //This will be built in the public method returning this as adding a string containging just /by-champion is worthwhile. 
+        //variation of the above also exists including additional /by-champion/{championId}.
         private static string championMasteryScoreBySummonerId = "lol/champion-mastery/v3/scores/by-summoner/"; //+SummonerID;
+
+        //League-V3
+        private static string challengerLeaguesByQueue = "lol/league/v3/challengerleagues/by-queue/"; //+Queue;
+        private static string leagueByLeagueId = "lol/league/v3/leagues/"; //+LeagueId
+        private static string masterLeaguesByQueue = "lol/league/v3/masterleagues/by-queue/"; //+Queue;
+        private static string leaguePositionsBySummonerId = "lol/league/v3/positions/by-summoner/"; //+summonerId
 
         private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
         private static string matchListFromSummonerAccountId = "lol/match/v3/matchlists/by-account/"; //+id + ?;
         private static string matchDetailedFromId = "lol/match/v3/matches/"; //+id + ?
-        private static string leaguePositionFromSummonerId = "/lol/league/v3/positions/by-summoner/"; //+id + ?;
+
+
 
 
         //Champion-Mastery-V3
@@ -38,6 +43,26 @@ namespace LoLCrawler
             return $"{euRoot}{championMasteryScoreBySummonerId}{summonerId}?{apiKeySuffix}";
         }
 
+        //League-V3
+        public static string ChallengerLegauesByQueue(string queue)
+        {
+            return $"{euRoot}{challengerLeaguesByQueue}{queue}?{apiKeySuffix}";
+        }
+        public static string LeagueByLeagueId(string leagueId)
+        {
+            return $"{euRoot}{leagueByLeagueId}{leagueId}?{apiKeySuffix}";
+        }
+        public static string MasterLeaguesByQueue(string queue)
+        {
+            return $"{euRoot}{masterLeaguesByQueue}{queue}?{apiKeySuffix}";
+        }
+        public static string LeaguePositionsBySummonerId(string summonerId)
+        {
+            return $"{euRoot}{leaguePositionsBySummonerId}{summonerId}?{apiKeySuffix}";
+        }
+
+
+
 
         //other(to be regrouped according to their api as above, possibly then refactored into their own objects.);
         public static string SummonerRequest(string name)
@@ -52,10 +77,7 @@ namespace LoLCrawler
         {
             return $"{euRoot}{matchDetailedFromId}{matchId}?{apiKeySuffix}";
         }
-        public static string LeaguePositionRequest(string summonerId)
-        {
-            return $"{euRoot}{leaguePositionFromSummonerId}{summonerId}?{apiKeySuffix}";
-        }
+        
 
 
 

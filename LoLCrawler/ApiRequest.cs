@@ -137,7 +137,7 @@ namespace LoLCrawler
 
             try
             {
-                json = requester.Fetch(RequestStringHolder.LeaguePositionRequest(id));
+                json = requester.Fetch(RequestStringHolder.LeaguePositionsBySummonerId(id));
                 result = RiotDtoFromJson.GetLeaguePositionList(json);
             }
             catch

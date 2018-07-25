@@ -42,7 +42,7 @@ namespace LoLCrawler
             string json = null;
             try
             {
-                json = requester.Fetch(RequestStringHolder.SummonerRequest(name));
+                json = requester.Fetch(RequestStringHolder.SummonersByName(name));
                 result = RiotDtoFromJson.GetSummoner(json);
             }
             catch

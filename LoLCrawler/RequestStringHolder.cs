@@ -36,10 +36,10 @@ namespace LoLCrawler
         private static string activeGamesBySummonerId = "lol/spectator/v3/active-games/by-summoner/"; //+SummonerId
         private static string featuredGames = "/lol/spectator/v3/featured-games"; //No Query params to append.
 
-        //other;
-        private static string summonerRequest = "lol/summoner/v3/summoners/by-name/"; //+name + ?;
-
-        
+        //Summoner-V3
+        private static string summonersByAccountId = "lol/summoner/v3/summoners/by-account/"; //+AccountId
+        private static string summonersByName = "lol/summoner/v3/summoners/by-name/"; //+SummonerName
+        private static string summonersBySummonerId = "lol/summoner/v3/summoners/"; //+SummonerId        
 
 
         //Champion-Mastery-V3
@@ -112,16 +112,18 @@ namespace LoLCrawler
             return $"{euRoot}{featuredGames}?{apiKeySuffix}";
         }
 
-
-
-        //other(to be regrouped according to their api as above, possibly then refactored into their own objects.);
-        public static string SummonerRequest(string name)
+        //Summoner-V3
+        public static string SummonersByAccountId(string accountId)
         {
-            return $"{euRoot}{summonerRequest}{name}?{apiKeySuffix}";
+            return $"{euRoot}{summonersByAccountId}{accountId}?{apiKeySuffix}";
         }
-        
-
-
-
+        public static string SummonersByName(string summonerName)
+        {
+            return $"{euRoot}{summonersByName}{summonerName}?{apiKeySuffix}";
+        }
+        public static string SummonerBySummonerId(string summonerId)
+        {
+            return $"{euRoot}{summonersBySummonerId}{summonerId}?{apiKeySuffix}";
+        }
     }
 }

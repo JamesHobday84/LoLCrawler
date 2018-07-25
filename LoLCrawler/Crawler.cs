@@ -9,13 +9,19 @@ namespace LoLCrawler
 {
     class Crawler
     {
+        public Crawler()
+        {
+            requestStringHolder = new RequestStringHolder();
+        }
+        private RequestStringHolder requestStringHolder;
+
         public void CollectNamesFromMatchHistory(string summonerName)
         {
-            Summoner summoner = new ApiRequest().GetSummonerByName(summonerName);
+            Summoner summoner = new ApiRequest(requestStringHolder).GetSummonerByName(summonerName);
             Console.WriteLine($"Found Summoner : {summonerName}");
 
             Console.WriteLine("Attempting to find matchHistory...");
-            MatchList matchList = new ApiRequest().GetMatchListBySummonerId(summoner.accountId);
+            MatchList matchList = new ApiRequest(requestStringHolder).GetMatchListBySummonerId(summoner.accountId);
             Console.WriteLine($"Found Match History, gamesRetreived: {matchList.matches.Count} // {matchList.totalGames}");
 
             Console.WriteLine("Attempting To Retreive Games");
@@ -25,7 +31,7 @@ namespace LoLCrawler
             int count = 0;
             foreach(Match match in matchList.matches)
             {
-                MatchDetailed matchDetailed = new ApiRequest().GetMatchDetailedById(match.gameId.ToString());
+                MatchDetailed matchDetailed = new ApiRequest(requestStringHolder).GetMatchDetailedById(match.gameId.ToString());
                 
                 foreach (var ParticipantIdentity in matchDetailed.participantIdentities)
                 {
@@ -73,10 +79,10 @@ namespace LoLCrawler
             while (dbHelper.GetNameFromId(index) != null)
             {
                 Name name = dbHelper.GetNameFromId(index);
-                Summoner summoner = new ApiRequest().GetSummonerByName(name.summonerName);
+                Summoner summoner = new ApiRequest(requestStringHolder).GetSummonerByName(name.summonerName);
                 if (summoner != null)
                 {
-                    LeaguePosition leaguePosition = new ApiRequest().GetSoloQLeaguePositionBySummonerId(summoner.id);
+                    LeaguePosition leaguePosition = new ApiRequest(requestStringHolder).GetSoloQLeaguePositionBySummonerId(summoner.id);
                     LeagueDiv leagueDiv;
                     if (leaguePosition != null)
                     {

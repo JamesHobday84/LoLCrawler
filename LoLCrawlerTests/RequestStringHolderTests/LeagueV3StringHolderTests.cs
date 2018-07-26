@@ -23,5 +23,17 @@ namespace LoLCrawlerTests.RequestStringHolderTests
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void CorrectStringLeagueById()
+        {
+            var sut = new LeagueV3StringHolder(new EuWestStringHolder());
+            var leagueId = "10";
+            var expected = $"{euRoot}/lol/league/v3/leagues/{leagueId}{apiKeySuffix}";
+
+            var result = sut.LeagueByLeagueId(leagueId);
+
+            Assert.Equal(expected, result);
+        }
     }
 }

@@ -37,5 +37,17 @@ namespace LoLCrawlerTests.RequestStringHolderTests
 
             Assert.Equal(result, expected);
         }
+
+        [Fact]
+        public void CorrectStringForMasteriesScoreBySummonerEuWest()
+        {
+            var sut = new ChampionMasteryV3StringHolder(new EuWestStringHolder());
+            var summonerId = "60";
+            var expected = $"{euRoot}/lol/champion-mastery/v3/scores/by-summoner/{summonerId}{apiKeySuffix}";
+
+            var result = sut.ChampionMasteryScoreBySummonerId(summonerId);
+
+            Assert.Equal(result, expected);
+        }
     }
 }

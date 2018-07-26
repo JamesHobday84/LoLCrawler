@@ -8,7 +8,6 @@ namespace LoLCrawlerTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

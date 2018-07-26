@@ -7,7 +7,7 @@ using Xunit;
 
 namespace LoLCrawlerTests.RequestStringHolderTests
 {
-    public class ChampionV3Tests
+    public class ChampionV3StringHolderTests
     {
         private readonly string apiKeySuffix = $"?api_key={ApiKeyHolder.ApiKey}";
         private readonly string euRoot = "https://euw1.api.riotgames.com";

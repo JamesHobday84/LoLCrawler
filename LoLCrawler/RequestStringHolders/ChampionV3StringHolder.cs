@@ -15,7 +15,7 @@ namespace LoLCrawler.RequestStringHolders
         private string root;
         private string apiKeySuffix;
 
-        private readonly string champions = "lol/platform/v3/champions/"; //no additional query paramters;
+        private readonly string champions = "lol/platform/v3/champions"; //no additional query paramters;
         //variation of above with Id as parameter.
 
         public string Champions()
@@ -24,7 +24,7 @@ namespace LoLCrawler.RequestStringHolders
         }
         public string ChampionsById(string id)
         {
-            return $"{root}{champions}{id}?{apiKeySuffix}";
+            return $"{root}{champions}/{id}?{apiKeySuffix}";
         }
     }
 }

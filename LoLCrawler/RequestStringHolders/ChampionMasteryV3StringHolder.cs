@@ -31,7 +31,7 @@ namespace LoLCrawler.RequestStringHolders
         }
         public string ChampionMasteriesBySummonerByChampion(string summonerId, string championId)
         {
-            return $"{root}{championMasteriesBySummonerId}{summonerId}/by-champion{championId}?{apiKeySuffix}";
+            return $"{root}{championMasteriesBySummonerId}{summonerId}/by-champion/{championId}?{apiKeySuffix}";
         }
         public string ChampionMasteryScoreBySummonerId(string summonerId)
         {

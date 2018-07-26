@@ -47,5 +47,17 @@ namespace LoLCrawlerTests.RequestStringHolderTests
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void CorrectStringPositionsBySummonerId()
+        {
+            var sut = new LeagueV3StringHolder(new EuWestStringHolder());
+            var summonerId = "10";
+            var expected = $"{euRoot}/lol/league/v3/positions/by-summoner/{summonerId}{apiKeySuffix}";
+
+            var result = sut.LeaguePositionsBySummonerId(summonerId);
+
+            Assert.Equal(expected, result);
+        }
     }
 }

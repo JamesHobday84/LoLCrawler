@@ -35,5 +35,17 @@ namespace LoLCrawlerTests.RequestStringHolderTests
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void CorrectStringMasterLeaguesByQueue()
+        {
+            var sut = new LeagueV3StringHolder(new EuWestStringHolder());
+            var queue = "queue";
+            var expected = $"{euRoot}/lol/league/v3/masterleagues/by-queue/{queue}{apiKeySuffix}";
+
+            var result = sut.MasterLeaguesByQueue(queue);
+
+            Assert.Equal(expected, result);
+        }
     }
 }

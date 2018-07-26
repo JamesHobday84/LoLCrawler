@@ -22,5 +22,17 @@ namespace LoLCrawlerTests.RequestStringHolderTests
 
             Assert.Equal(result, expected);            
         }
+
+        [Fact]
+        public void CorrectStringForChampionsByIdEuWest()
+        {
+            var sut = new ChampionV3StringHolder(new EuWestStringHolder());
+            var id = "10";
+            var expected = $"{euRoot}/lol/platform/v3/champions/{id}{apiKeySuffix}";
+
+            var result = sut.ChampionsById(id);
+
+            Assert.Equal(result, expected);
+        }
     }
 }

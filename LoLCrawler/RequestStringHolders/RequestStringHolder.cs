@@ -15,7 +15,7 @@ namespace LoLCrawler
             Champion = new ChampionV3StringHolder(EuWestStringHolder);
             League = new LeagueV3StringHolder(EuWestStringHolder);
             LolStatus = new LolStatusV3StringHolder(EuWestStringHolder);
-            Match = new MatchV3(EuWestStringHolder);
+            Match = new MatchV3StringHolder(EuWestStringHolder);
             Spectator = new SpectatorV3StringHolder(EuWestStringHolder);
             Summoner = new SummonerV3StringHolder(EuWestStringHolder);            
         }
@@ -26,7 +26,7 @@ namespace LoLCrawler
         public ChampionV3StringHolder Champion;
         public LeagueV3StringHolder League;
         public LolStatusV3StringHolder LolStatus;
-        public MatchV3 Match;
+        public MatchV3StringHolder Match;
         public SpectatorV3StringHolder Spectator;
         public SummonerV3StringHolder Summoner;
     }

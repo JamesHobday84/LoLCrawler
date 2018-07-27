@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LoLCrawler.RequestStringHolders
 {
-    public class MatchV3
+    public class MatchV3StringHolder
     {
-        public MatchV3(SharedStringHolder sharedStringHolder)
+        public MatchV3StringHolder(SharedStringHolder sharedStringHolder)
         {
             root = sharedStringHolder.Root();
             apiKeySuffix = sharedStringHolder.ApiKeySuffix();

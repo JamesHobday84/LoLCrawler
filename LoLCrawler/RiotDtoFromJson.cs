@@ -42,5 +42,9 @@ namespace LoLCrawler
         {
             return JsonConvert.DeserializeObject<Champion>(json); 
         }
+        public static LeagueList GetLeagueList(string json)
+        {
+            return JsonConvert.DeserializeObject<LeagueList>(json);
+        }
     }
 }

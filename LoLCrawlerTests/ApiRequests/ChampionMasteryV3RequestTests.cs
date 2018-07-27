@@ -78,7 +78,7 @@ namespace LoLCrawlerTests.ApiRequests
         {
             var sut = new ChampionMasteryV3Request(new RequestStringHolder());
             var summonerId = "20841022";//valid id that should correspond to actual data.
-            var championId = "10";//valid id.
+            var championId = "105";//valid id.
 
             var result = sut.ChampionMastery(summonerId, championId);
 

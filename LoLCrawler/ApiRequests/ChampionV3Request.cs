@@ -9,9 +9,9 @@ namespace LoLCrawler.ApiRequests
     public class ChampionV3Request
     {
 
-        public ChampionV3Request()
+        public ChampionV3Request(RequestStringHolder rsh)
         {
-            requestStringHolder = new RequestStringHolder();
+            requestStringHolder = rsh;
         }
 
         private RequestMaker requester = new RequestMaker();
@@ -29,6 +29,7 @@ namespace LoLCrawler.ApiRequests
             string request = requestStringHolder.Champion.Champions();
             string json = null;
             IEnumerable<Champion> result = null;
+            Champions tempRes = null;
 
             try
             {
@@ -38,7 +39,8 @@ namespace LoLCrawler.ApiRequests
                     onRateLimitExceeded();
                     return Champions();
                 }
-                result = RiotDtoFromJson.GetChampionsList(json);
+                tempRes = RiotDtoFromJson.GetChampionsList(json);
+                result = tempRes.champions;
             }
             catch
             {

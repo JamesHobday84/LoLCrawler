@@ -6,7 +6,7 @@ namespace LoLCrawler.RiotData
 {
     public class Champion
     {
-        public bool rankedPLayEnabled { get; set; }
+        public bool rankedPlayEnabled { get; set; }
         public bool botEnabled { get; set; }
         public bool botMmEnabled { get; set; }
         public bool active { get; set; }

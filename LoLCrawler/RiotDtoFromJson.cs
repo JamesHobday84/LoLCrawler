@@ -33,9 +33,9 @@ namespace LoLCrawler
         {
             return JsonConvert.DeserializeObject<ChampionMastery>(json);
         }
-        public static IEnumerable<Champion> GetChampionsList(string json)
+        public static Champions GetChampionsList(string json)
         {
-            return JsonConvert.DeserializeObject<IEnumerable<Champion>>(json);
+            return JsonConvert.DeserializeObject<Champions>(json);
         }
 
         public static Champion GetChampion(string json)

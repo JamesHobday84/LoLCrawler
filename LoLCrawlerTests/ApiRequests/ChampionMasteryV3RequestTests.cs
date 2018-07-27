@@ -30,6 +30,7 @@ namespace LoLCrawlerTests.ApiRequests
 
             Assert.True(result.Any());
         }
+        /*
         //The below test will take at least 2mins to run as this is how long it takes to 
         //have the limit reset.
         //Has been commented out as it arguably not a unit test and if implementing this test for each riot api
@@ -83,5 +84,28 @@ namespace LoLCrawlerTests.ApiRequests
 
             Assert.NotNull(result);
         }
+
+        [Fact]
+        public void ChampionMasteryScoreReturnsZeroIfNotFound()
+        {
+            var sut = new ChampionMasteryV3Request(new RequestStringHolder());
+            var summonerId = "10";
+
+            var result = sut.ChampionMasteryScore(summonerId);
+
+            Assert.Equal(0, result);
+        }
+        [Fact]
+        public void ChampionMasteryScoreReturnsNonZeroWhenNonZeroValue() {
+
+            var sut = new ChampionMasteryV3Request(new RequestStringHolder());
+            var summonerId = "20841022";
+
+            var result = sut.ChampionMasteryScore(summonerId);
+
+            Assert.NotEqual(0, result);
+        }
+
+
     }
 }

@@ -78,5 +78,29 @@ namespace LoLCrawler.ApiRequests
 
             return result;
         }
+
+        public int ChampionMasteryScore(string summonerId)
+        {
+            string request = requestStringHolder.ChampionMastery.ChampionMasteryScoreBySummonerId(summonerId);
+            string json = null;
+            int result;
+
+            try
+            {
+                json = requester.Fetch(request);
+                if(json == EXCEEDED_LIMIT)
+                {
+                    onRateLimitExceeded();
+                    return ChampionMasteryScore(summonerId);
+                }
+                result = Int32.Parse(json);
+            }
+            catch
+            {
+                Console.WriteLine("Something went wrong in ChampionMasteryScore({summonerId}) : returning 0");
+                return 0;
+            }
+            return result;
+        }
     }
 }

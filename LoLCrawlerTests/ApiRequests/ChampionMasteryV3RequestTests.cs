@@ -34,7 +34,8 @@ namespace LoLCrawlerTests.ApiRequests
         //have the limit reset.
         //Has been commented out as it arguably not a unit test and if implementing this test for each riot api
         //would add atleast 14mins to each test run. perhaps create a file of just tests checking rate lmit exceeded behaviour
-        //is correct.
+        //is correct. This may allow it to be reduced to just 2 mins(exceed rate limit once then run all tests as opposed to exceeding
+        //the limit once for each test.
         /*
         [Fact]
         public void ReturnsSuccessfullyAfterWaitWhenLimitExceeded()

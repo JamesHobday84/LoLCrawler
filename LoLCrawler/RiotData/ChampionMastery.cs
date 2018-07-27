@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.RiotData
 {
-    class ChampionMastery
+    public class ChampionMastery
     {
         public bool chestGranted { get; set; }
         public int championLevel { get; set; }

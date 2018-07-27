@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LoLCrawler.ApiRequests
 {
-    class ChampionMasteryV3Request
+    public class ChampionMasteryV3Request
     {
 
         public ChampionMasteryV3Request(RequestStringHolder rsh)
@@ -45,6 +46,11 @@ namespace LoLCrawler.ApiRequests
                 return null;//something went wrong
             }
 
+            //If result is just empty then set it to be null.
+            if (!result.Any())
+            {
+                result = null;
+            }
             return result;
         }
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.ApiRequests
 {
-    class Champion_Mastery_V3
+    class ChampionMasteryV3Request
     {
 
     }

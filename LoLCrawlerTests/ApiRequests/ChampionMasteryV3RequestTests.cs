@@ -11,7 +11,7 @@ namespace LoLCrawlerTests.ApiRequests
     public class ChampionMasteryV3RequestTests
     {
         [Fact]
-        public void ReturnsNullIfNotFoundOrEmpty()
+        public void ChampionMasteriesReturnsNullIfNotFoundOrEmpty()
         {
             var sut = new ChampionMasteryV3Request(new RequestStringHolder());
             var summonerId = "123456"; //Madeup id that shouldn't match any data.
@@ -21,7 +21,7 @@ namespace LoLCrawlerTests.ApiRequests
             Assert.Null(result);
         }
         [Fact]
-        public void ReturnsNonEmptyIEnumerableIfFoundAndNotEmpty()
+        public void ChampionMasteriesReturnsNonEmptyIEnumerableIfFoundAndNotEmpty()
         {
             var sut = new ChampionMasteryV3Request(new RequestStringHolder());
             var summonerId = "20841022";//valid id that should correspond to actual data.
@@ -38,7 +38,7 @@ namespace LoLCrawlerTests.ApiRequests
         //the limit once for each test.
         /*
         [Fact]
-        public void ReturnsSuccessfullyAfterWaitWhenLimitExceeded()
+        public void ChampionMasteriesReturnsSuccessfullyAfterWaitWhenLimitExceeded()
         {
             var sut = new ChampionMasteryV3Request(new RequestStringHolder());
             var summonerId = "20841022";//valid id that should correspond to actual data.
@@ -59,5 +59,29 @@ namespace LoLCrawlerTests.ApiRequests
             Assert.True(result.Any());
         }
         */
+
+        [Fact]
+        public void ChampionMasteryReturnsNullIfNotFound()
+        {
+            var sut = new ChampionMasteryV3Request(new RequestStringHolder());
+            var summonerId = "10";//made up invalid id that should not match any data.
+            var championId = "10";
+
+            var result = sut.ChampionMastery(summonerId, championId);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void ChampionMasteryReturnsChampionMasteryIfFound()
+        {
+            var sut = new ChampionMasteryV3Request(new RequestStringHolder());
+            var summonerId = "20841022";//valid id that should correspond to actual data.
+            var championId = "10";//valid id.
+
+            var result = sut.ChampionMastery(summonerId, championId);
+
+            Assert.NotNull(result);
+        }
     }
 }

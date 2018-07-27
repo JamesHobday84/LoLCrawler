@@ -36,7 +36,7 @@ namespace LoLCrawler.ApiRequests
                 if (json == EXCEEDED_LIMIT)
                 {
                     onRateLimitExceeded();
-                    return this.ChampionMasteries(summonerId);
+                    return ChampionMasteries(summonerId);
                 }
                 result = RiotDtoFromJson.GetChampionMasteryList(json);
             }
@@ -51,6 +51,31 @@ namespace LoLCrawler.ApiRequests
             {
                 result = null;
             }
+            return result;
+        }
+
+        public ChampionMastery ChampionMastery(string summonerId, string championId)
+        {
+            string request = requestStringHolder.ChampionMastery.ChampionMasteriesBySummonerByChampion(summonerId, championId);
+            string json = null;
+            ChampionMastery result = null;
+
+            try
+            {
+                json = requester.Fetch(request);
+                if(json == EXCEEDED_LIMIT)
+                {
+                    onRateLimitExceeded();
+                    return ChampionMastery(summonerId, championId);
+                }
+                result = RiotDtoFromJson.GetChampionMastery(json);
+            }
+            catch
+            {
+                Console.WriteLine("Something went wrong in ChampionMastery({summonerId}, {championId}) : returning null");
+                return null;
+            }
+
             return result;
         }
     }

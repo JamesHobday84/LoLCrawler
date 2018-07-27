@@ -25,5 +25,9 @@ namespace LoLCrawler
         {
             return JsonConvert.DeserializeObject<IEnumerable<LeaguePosition>>(json);
         }
+        public static IEnumerable<ChampionMastery> GetChampionMasteryList(string json)
+        {
+            return JsonConvert.DeserializeObject<IEnumerable<ChampionMastery>>(json);
+        }
     }
 }

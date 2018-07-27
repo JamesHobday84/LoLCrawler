@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoLCrawler
 {
-    class RequestMaker
+    public class RequestMaker
     {
         private async Task<string> makeRequest(string url)
         {

@@ -6,6 +6,6 @@ namespace LoLCrawler
 {
     public static class ApiKeyHolder
     {
-        public static readonly string ApiKey = "RGAPI-0092d6ac-ab38-40b3-b7ae-7e3adf1eea56";
+        public static readonly string ApiKey = "RGAPI-81dc5d16-951b-4859-a5f2-0c9f3e45322f";
     }
 }

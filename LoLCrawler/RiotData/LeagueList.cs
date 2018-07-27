@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.RiotData
 {
-    class LeagueList
+    public class LeagueList
     {
         public string leagueId { get; set; }
         public string tier { get; set; }

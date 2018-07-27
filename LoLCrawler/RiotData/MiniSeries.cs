@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.RiotData
 {
-    class MiniSeries
+    public class MiniSeries
     {
         public int wins { get; set; }
         public int losses { get; set; }

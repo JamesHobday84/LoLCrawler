@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LoLCrawler.ApiRequests
 {
-    class LeagueV3Request
+    public class LeagueV3Request
     {
         public LeagueV3Request(RequestStringHolder rsh)
         {

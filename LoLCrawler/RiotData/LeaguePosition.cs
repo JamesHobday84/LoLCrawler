@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.RiotData
 {
-    class LeaguePosition
+    public class LeaguePosition
     {
         public string rank { get; set; }
         public string queueType { get; set; }

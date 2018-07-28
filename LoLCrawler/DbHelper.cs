@@ -29,5 +29,25 @@ namespace LoLCrawler
         {
             return context.Summoners.Where(x => x.SummonerEntityId == index).SingleOrDefault();
         }
+        public IEnumerable<SummonerEntity> GetAllSummoners()
+        {
+            return context.Summoners.OrderBy(x => x.Name);
+        }
+        //returns true if league already exists in db. 
+        private bool leagueAlreadyExists(LeagueEntity league)
+        {
+            var queryResult = context.Leagues.Where(x => x.LeagueId == league.LeagueId).SingleOrDefault();
+            return (queryResult != null);
+        }
+        public bool submitLeagueIfNotDuplicate(LeagueEntity league)
+        {
+            if (!leagueAlreadyExists(league))
+            {
+                context.Add(league);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

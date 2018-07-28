@@ -4,6 +4,7 @@ using RiotData.LoLCrawler;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LoLCrawler
 {
@@ -63,9 +64,30 @@ namespace LoLCrawler
             }
             
         }
+        //collect league information from summoners in db.
         public void CollectLeagueNames()
         {
+            int summonersQueried = 0;
+            int leaguesFound = 0;
 
+            IEnumerable<SummonerEntity> summonerList = dbHelper.GetAllSummoners();
+            foreach(SummonerEntity summoner in summonerList)
+            {
+                IEnumerable<LeaguePosition> leaguesList = new ApiRequest(requestStringHolder).League.LeaguePositions(summoner.SummonerId);
+                if (leaguesList != null)
+                {
+                    IEnumerable<LeaguePosition> soloQLeague = leaguesList.Where(x => x.queueType == "RANKED_SOLO_5x5");
+                    LeaguePosition leaguePos = soloQLeague.FirstOrDefault();
+                    LeagueEntity league = EntityFromRiotDto.GetLeague(leaguePos);
+                    if (league != null && dbHelper.submitLeagueIfNotDuplicate(league))
+                    {
+                        leaguesFound++;
+                    }
+                }
+                summonersQueried++;
+                Console.Clear();
+                Console.WriteLine($"{summonersQueried} Summoners From {leaguesFound} Leagues");
+            }
         }
     }
 }

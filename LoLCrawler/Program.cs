@@ -10,6 +10,8 @@ namespace LoLCrawler
         static void Main(string[] args)
         {
             Crawler crawler = new Crawler();
+            crawler.CollectLeagueNames();
+            Console.ReadLine();
             crawler.CollectSummoners("unkownEntity");
         }
     }

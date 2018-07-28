@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LoLCrawler.DatabaseEntity
 {
-    class LeagueEntity
+    public class LeagueEntity
     {
         public int LeagueEntityId{ get; set; }
 

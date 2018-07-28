@@ -1,4 +1,5 @@
-﻿using LoLCrawler.RiotData;
+﻿using LoLCrawler.ApiRequests;
+using LoLCrawler.RiotData;
 using Newtonsoft.Json;
 using RiotData.LoLCrawler;
 using System;
@@ -12,155 +13,18 @@ namespace LoLCrawler
         public ApiRequest(RequestStringHolder rsh)
         {
             requestStringHolder = rsh;
+            ChampionMastery = new ChampionMasteryV3Request(rsh);
+            Champion = new ChampionV3Request(rsh);
+            League = new LeagueV3Request(rsh);
+            Match = new MatchV3Request(rsh);
+            Summoner = new SummonerV3Request(rsh);
         }
 
-        private int _consecutiveFailures = 0;
-        private int _consecutiveNullsReturned = 0;
-        private const string EXCEEDED_LIMIT = "Response status code does not indicate success: 429 (Too Many Requests).";
         private RequestStringHolder requestStringHolder;
-
-        private RequestMaker requester = new RequestMaker();
-
-        private void onRateLimitExceeded()
-        {
-            Console.WriteLine("Rate Limit Exceeded : WAITING 60 SECONDS");
-            _consecutiveFailures++;
-            System.Threading.Thread.Sleep(60000);
-        }
-        private void onRequestSuccess()
-        {
-            _consecutiveNullsReturned = 0;
-            _consecutiveFailures = 0;
-        }
-        private void onOther()
-        {
-            _consecutiveNullsReturned++;
-            if (_consecutiveNullsReturned > 10)
-            {
-                //something has gone wrong lets stop.
-                throw new Exception();
-            }
-        }
-
-        public Summoner GetSummonerByName(string name)
-        {
-            Summoner result = null;
-            string json = null;
-            try
-            {
-                json = requester.Fetch(requestStringHolder.Summoner.SummonersByName(name));
-                result = RiotDtoFromJson.GetSummoner(json);
-            }
-            catch
-            {
-                if (json == EXCEEDED_LIMIT)
-                {
-                    onRateLimitExceeded();
-                    return GetSummonerByName(name);
-                }
-                else
-                {
-                    onOther();
-                    return null;
-                }
-            }
-
-            return result;
-        }
-
-        public MatchList GetMatchListBySummonerId(string id)
-        {
-            MatchList result = null;
-            string json = null;
-
-            try
-            {
-                json = requester.Fetch(requestStringHolder.Match.MatchListByAccountId(id));
-                result = RiotDtoFromJson.GetMatchList(json);
-            }
-            catch
-            {
-                if (json == EXCEEDED_LIMIT)
-                {
-                    onRateLimitExceeded();
-                    return GetMatchListBySummonerId(id);
-                }
-                else
-                {
-                    onOther();
-                    return null;
-                }
-            }
-            return result;
-        }
-
-        public MatchDetailed GetMatchDetailedById(string id)
-        {
-            MatchDetailed result = null;
-            string json = null;
-
-            try
-            {
-                json = requester.Fetch(requestStringHolder.Match.MatchesByMatchId(id));
-                result = RiotDtoFromJson.GetMatchDetailed(json);
-            }
-            catch
-            {
-                if (json == EXCEEDED_LIMIT)
-                {
-                    onRateLimitExceeded();
-                    return GetMatchDetailedById(id);
-                }
-                else
-                {
-                    onOther();
-                    return null;
-                }
-            }
-            return result;
-        }
-        //returns null if not found or no rank data indicating they are unranked.
-        public LeaguePosition GetSoloQLeaguePositionBySummonerId(string id)
-        {
-            IEnumerable<LeaguePosition> leaguePositionList = GetLeaguePositionsBySummonerId(id);
-            if (leaguePositionList != null)
-            {
-                foreach(LeaguePosition leaguePosition in leaguePositionList)
-                {
-                    if (leaguePosition.queueType == "RANKED_SOLO_5x5")
-                    {
-                        return leaguePosition;
-                    }
-                }
-            }
-            return null;
-        }
-
-        public IEnumerable<LeaguePosition> GetLeaguePositionsBySummonerId(string id)
-        {
-            string json = null;
-            IEnumerable<LeaguePosition> result = null;
-
-            try
-            {
-                json = requester.Fetch(requestStringHolder.League.LeaguePositionsBySummonerId(id));
-                result = RiotDtoFromJson.GetLeaguePositionList(json);
-            }
-            catch
-            {
-                if (json == EXCEEDED_LIMIT)
-                {
-                    onRateLimitExceeded();
-                    return GetLeaguePositionsBySummonerId(id);
-                }
-                else
-                {
-                    onOther();
-                    return null;
-                }
-            }
-
-            return result;
-        }
+        public ChampionMasteryV3Request ChampionMastery;
+        public ChampionV3Request Champion;
+        public LeagueV3Request League;
+        public MatchV3Request Match;
+        public SummonerV3Request Summoner;        
     }
 }

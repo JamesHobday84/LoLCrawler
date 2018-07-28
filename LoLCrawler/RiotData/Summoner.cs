@@ -17,5 +17,4 @@ namespace RiotData.LoLCrawler
         public long revisionDate { get; set; }
         public int summonerLevel { get; set; }
     }
-
 }

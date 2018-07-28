@@ -4,14 +4,13 @@ using System.Text;
 using LoLCrawler.DatabaseEntity;
 using Microsoft.EntityFrameworkCore;
 using RiotData.LoLCrawler;
+using LoLCrawler.DatabaseEntity;
 
 namespace LoLCrawler
 {
     class NamesDbContext : DbContext
     {
-        public DbSet<Summoner> Summoners { get; set; }
-
-        public DbSet<MatchDetailed> MatchesDetailed { get; set; }
+        public DbSet<DatabaseEntity.Player> players;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

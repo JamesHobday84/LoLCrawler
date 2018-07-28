@@ -14,10 +14,15 @@ namespace LoLCrawler
         }
         private RequestStringHolder requestStringHolder;
 
-        public void FromSummonerName(string name)
+        //Collect summoners from start with a given summoner name then working thorugh the db.
+        public void CollectSummoners(string summonerName)
         {
-
+            Summoner summoner = new ApiRequest(requestStringHolder).Summoner.SummonerByName(summonerName);
+            //add summoner to db.
+            CollectSummoners();
         }
+        //collect more summoners from existing dbEntries
+        public void CollectSummoners() { }
     }
 }
 

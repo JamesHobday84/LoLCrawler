@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LoLCrawler.DatabaseEntity;
 using Microsoft.EntityFrameworkCore;
 using RiotData.LoLCrawler;
 
@@ -9,7 +10,7 @@ namespace LoLCrawler
 {
     class NamesDbContext : DbContext
     {
-
+        public DbSet<SummonerEntity> Summoners { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

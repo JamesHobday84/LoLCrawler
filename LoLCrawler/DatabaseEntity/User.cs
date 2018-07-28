@@ -4,10 +4,10 @@ using System.Text;
 
 namespace LoLCrawler.DatabaseEntity
 {
-    class Player
+    class User
     {
         //databse primary key
-        public int PlayerId;
+        public int PlayerId { get; set; }
 
         //Data below is gathered from the Riot Api SummonerDTO.
 

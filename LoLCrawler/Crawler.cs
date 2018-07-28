@@ -14,6 +14,11 @@ namespace LoLCrawler
             requestStringHolder = new RequestStringHolder();
         }
         private RequestStringHolder requestStringHolder;
+
+        public void FromSummonerName(string name)
+        {
+
+        }
     }
 }
 

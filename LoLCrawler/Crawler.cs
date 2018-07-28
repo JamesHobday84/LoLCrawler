@@ -1,5 +1,4 @@
-﻿using LoLCrawler.DatabaseEntity;
-using LoLCrawler.RiotData;
+﻿using LoLCrawler.RiotData;
 using RiotData.LoLCrawler;
 using System;
 using System.Collections.Generic;

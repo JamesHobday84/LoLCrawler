@@ -9,7 +9,8 @@ namespace LoLCrawler
     {
         static void Main(string[] args)
         {
-            
+            Crawler crawler = new Crawler();
+            crawler.CollectSummoners("unkownEntity");
         }
     }
 }

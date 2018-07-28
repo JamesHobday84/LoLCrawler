@@ -20,9 +20,14 @@ namespace LoLCrawler
             if (!summonerAlreadyExists(summoner))
             {
                 context.Add(summoner);
+                context.SaveChanges();
                 return true;
             }
             return false;
+        }
+        public SummonerEntity GetSummonerByIndex(int index)
+        {
+            return context.Summoners.Where(x => x.SummonerEntityId == index).SingleOrDefault();
         }
     }
 }

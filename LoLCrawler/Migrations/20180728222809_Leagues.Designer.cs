@@ -11,9 +11,10 @@ using System;
 namespace LoLCrawler.Migrations
 {
     [DbContext(typeof(NamesDbContext))]
-    partial class NamesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180728222809_Leagues")]
+    partial class Leagues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +36,7 @@ namespace LoLCrawler.Migrations
 
                     b.HasKey("LeagueEntityId");
 
-                    b.ToTable("Leagues");
+                    b.ToTable("leagues");
                 });
 
             modelBuilder.Entity("LoLCrawler.DatabaseEntity.SummonerEntity", b =>

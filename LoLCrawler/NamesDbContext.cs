@@ -12,7 +12,7 @@ namespace LoLCrawler
     {
         public DbSet<SummonerEntity> Summoners { get; set; }
 
-        public DbSet<LeagueEntity> leagues { get; set; }
+        public DbSet<LeagueEntity> Leagues { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

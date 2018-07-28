@@ -11,9 +11,10 @@ using System;
 namespace LoLCrawler.Migrations
 {
     [DbContext(typeof(NamesDbContext))]
-    partial class NamesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180728222957_LeagesNowWithCapitalLetter")]
+    partial class LeagesNowWithCapitalLetter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

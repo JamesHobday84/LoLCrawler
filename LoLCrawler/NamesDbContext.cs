@@ -12,6 +12,8 @@ namespace LoLCrawler
     {
         public DbSet<SummonerEntity> Summoners { get; set; }
 
+        public DbSet<LeagueEntity> leagues { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=master;

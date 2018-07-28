@@ -30,7 +30,7 @@ namespace LoLCrawler
         }
         //collect more summoners from existing dbEntries
         public void CollectSummoners() {
-            int index = 1;
+            int index = 100;
             int newSummonersFound = 0;
             int totalSummonersFound = 0;
             SummonerEntity summonerEnt = dbHelper.GetSummonerByIndex(index);
@@ -62,6 +62,10 @@ namespace LoLCrawler
                 index++;
             }
             
+        }
+        public void CollectLeagueNames()
+        {
+
         }
     }
 }

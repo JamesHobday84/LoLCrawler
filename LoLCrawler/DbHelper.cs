@@ -39,7 +39,7 @@ namespace LoLCrawler
             var queryResult = context.Leagues.Where(x => x.LeagueId == league.LeagueId).SingleOrDefault();
             return (queryResult != null);
         }
-        public bool submitLeagueIfNotDuplicate(LeagueEntity league)
+        public bool SubmitLeagueIfNotDuplicate(LeagueEntity league)
         {
             if (!leagueAlreadyExists(league))
             {
@@ -49,5 +49,10 @@ namespace LoLCrawler
             }
             return false;
         }
+        public IEnumerable<LeagueEntity> GetLeaguesByTier(string tier)
+        {
+            return context.Leagues.Where(x => x.Tier == tier);
+        }
+        
     }
 }
